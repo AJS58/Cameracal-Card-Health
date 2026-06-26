@@ -20,7 +20,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: pnpm
 
       - uses: dtolnay/rust-toolchain@stable
         with:
@@ -31,7 +30,7 @@ jobs:
           workspaces: ./artifacts/cameracal/src-tauri -> target
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Generate app icons
         working-directory: artifacts/cameracal
