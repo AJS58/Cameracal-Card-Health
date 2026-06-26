@@ -90,6 +90,64 @@ export async function checkFilesIntegrityNative(
   return invoke<import('./fileIntegrity').NativeIntegrityReport[]>('check_files_integrity', { paths });
 }
 
+// ── File Recovery ─────────────────────────────────────────────────────────────
+
+export interface RecoveredFile {
+  filename: string;
+  format: string;
+  sizeBytes: number;
+  outputPath: string;
+}
+
+export interface RecoverySummary {
+  filesFound: number;
+  bytesScanned: number;
+  recovered: RecoveredFile[];
+  error: string | null;
+}
+
+export interface RecoveryProgress {
+  bytesScanned: number;
+  totalBytes: number;
+  filesFound: number;
+  currentAction: string;
+}
+
+/**
+ * Returns the raw device path for a mounted volume.
+ * macOS: /Volumes/MY_CARD → /dev/rdisk2
+ * Windows: D:\ → \\.\D:
+ */
+export async function getDeviceForVolume(mountPath: string): Promise<string> {
+  if (!isTauri()) throw new Error('Native only');
+  const { invoke } = await import('@tauri-apps/api/core');
+  return invoke<string>('get_device_for_volume', { mountPath });
+}
+
+/**
+ * Returns true if the app can open the raw device for reading.
+ * false = Full Disk Access (macOS) or Administrator (Windows) not yet granted.
+ */
+export async function checkRecoveryAccess(devicePath: string): Promise<boolean> {
+  if (!isTauri()) return false;
+  const { invoke } = await import('@tauri-apps/api/core');
+  return invoke<boolean>('check_recovery_access', { devicePath });
+}
+
+/**
+ * Start a full sector-by-sector file carve of `devicePath`.
+ * Listen to "recovery-progress" events for live progress.
+ * This call resolves when the scan is complete.
+ */
+export async function recoverFiles(
+  devicePath: string,
+  outputDir: string,
+): Promise<RecoverySummary> {
+  if (!isTauri()) throw new Error('Native only');
+  const { invoke } = await import('@tauri-apps/api/core');
+  return invoke<RecoverySummary>('recover_files', { devicePath, outputDir });
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 /** Format bytes as a human-readable string (KB / MB / GB). */

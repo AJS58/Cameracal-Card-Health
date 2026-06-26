@@ -17,6 +17,7 @@ import CounterfeitDetector from "./pages/CounterfeitDetector";
 import ScanHistory from "./pages/ScanHistory";
 import Benchmark from "./pages/Benchmark";
 import SafeFormat from "./pages/SafeFormat";
+import FileRecovery from "./pages/FileRecovery";
 import NotFound from "@/pages/not-found";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -47,6 +48,7 @@ function AnimatedRoutes() {
           <Route path="/history" component={ScanHistory} />
           <Route path="/benchmark" component={Benchmark} />
           <Route path="/format" component={SafeFormat} />
+          <Route path="/file-recovery" component={FileRecovery} />
           <Route component={NotFound} />
         </Switch>
       </motion.div>

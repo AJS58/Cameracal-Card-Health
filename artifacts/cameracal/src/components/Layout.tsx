@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'wouter';
 import {
   Activity, HardDrive, Download, AlertTriangle, Settings, FileSearch,
-  ShieldCheck, CheckSquare, Layers, History, Gauge, Trash2, Sun, Moon
+  ShieldCheck, CheckSquare, Layers, History, Gauge, Trash2, Sun, Moon, RefreshCcw
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logoUrl from '/cameracal-logo.png';
@@ -28,6 +28,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     {
       label: 'Pro Tools',
       items: [
+        { href: '/file-recovery', icon: RefreshCcw,  label: 'File Recovery',        badge: 'NEW' as const },
         { href: '/readiness',   icon: CheckSquare, label: 'Readiness Check',     badge: 'NEW' as const },
         { href: '/counterfeit', icon: Layers,      label: 'Counterfeit Detector', badge: 'NEW' as const },
         { href: '/benchmark',   icon: Gauge,       label: 'Benchmark',            badge: 'NEW' as const },
