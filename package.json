@@ -1,0 +1,10 @@
+{
+  "name": "cameracal-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
