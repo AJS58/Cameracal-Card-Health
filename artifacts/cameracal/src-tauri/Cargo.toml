@@ -5,10 +5,6 @@ description = "Cameracal Card Health — Memory Card Integrity Analyser"
 authors = ["Cameracal Services"]
 edition = "2021"
 
-[lib]
-name = "cameracal_lib"
-crate-type = ["lib", "cdylib", "staticlib"]
-
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
 
