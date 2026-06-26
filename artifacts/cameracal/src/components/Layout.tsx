@@ -7,6 +7,9 @@ import {
 import { cn } from '@/lib/utils';
 import logoUrl from '/cameracal-logo.png';
 import { useTheme } from '../context/ThemeContext';
+import { isTauri } from '@/lib/tauri-bridge';
+
+const IN_TAURI = isTauri();
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -49,7 +52,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
           background: 'linear-gradient(180deg, hsl(var(--sidebar)) 0%, hsl(222 34% 6%) 100%)',
         }}
       >
-        <div className="px-4 py-4 border-b border-sidebar-border">
+        <div
+          className="px-4 border-b border-sidebar-border"
+          style={{ paddingTop: IN_TAURI ? 40 : 16, paddingBottom: 16 }}
+          {...(IN_TAURI ? { 'data-tauri-drag-region': true } : {})}
+        >
           <div style={{ background: 'hsl(0 0% 97%)', borderRadius: 10, padding: '7px 12px 5px' }}>
             <img
               src={logoUrl}
