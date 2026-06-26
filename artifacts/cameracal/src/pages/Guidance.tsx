@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Monitor, ShieldAlert, BookOpen } from 'lucide-react';
+import { CheckCircle2, Cpu, ShieldAlert, BookOpen } from 'lucide-react';
 
 export default function Guidance() {
   return (
@@ -17,17 +17,17 @@ export default function Guidance() {
               <div className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ background: 'hsl(226 80% 60% / 0.15)' }}>
                 <CheckCircle2 className="w-4 h-4 text-primary" />
               </div>
-              Browser Version Capabilities
+              What This App Does
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
-            <p>This web version runs entirely in your browser using standard web APIs. No data is uploaded to any server.</p>
+            <p>Cameracal Card Health runs entirely on your machine. No files leave your computer — all analysis is local and private.</p>
             <ul className="list-disc pl-5 space-y-2">
-              <li>Reads file structures and checks for zero-byte anomalies</li>
-              <li>Generates preview thumbnails for standard formats (JPEG, PNG)</li>
-              <li>Flags known RAW formats for metadata existence</li>
-              <li>Highlights missing or corrupted headers based on file size/type mismatch</li>
-              <li>Calculates a surface-level health score</li>
+              <li>Detects mounted drives and highlights removable media cards</li>
+              <li>Scans card contents and checks file headers for corruption</li>
+              <li>Validates JPEG, PNG, RAW (CR2, NEF, ARW, DNG and 20+ formats), MP4, MOV and MXF files</li>
+              <li>Flags zero-filled regions — a sign of failed card writes</li>
+              <li>Tracks scan history and generates shareable health reports</li>
             </ul>
           </CardContent>
         </Card>
@@ -36,15 +36,15 @@ export default function Guidance() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base font-semibold">
               <div className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ background: 'hsl(226 80% 60% / 0.15)' }}>
-                <Monitor className="w-4 h-4 text-primary" />
+                <Cpu className="w-4 h-4 text-primary" />
               </div>
-              Desktop Version (Coming Soon)
+              Coming in Future Updates
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
-            <p>Our upcoming dedicated desktop app will provide deeper forensic capabilities:</p>
+            <p>Planned additions to deepen the forensic capabilities of the app:</p>
             <ul className="list-disc pl-5 space-y-2">
-              <li>True deleted file recovery (carving)</li>
+              <li>True deleted file recovery (file carving)</li>
               <li>Deep sector-by-sector scanning</li>
               <li>Filesystem reconstruction (FAT32, exFAT, APFS)</li>
               <li>Card cloning and imaging prior to recovery</li>
