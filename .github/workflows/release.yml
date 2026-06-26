@@ -1,0 +1,51 @@
+name: Build & Release Desktop App
+
+  on:
+    workflow_dispatch:
+
+  permissions:
+    contents: write
+
+  jobs:
+    build:
+      name: macOS Universal
+      runs-on: macos-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - uses: pnpm/action-setup@v4
+          with:
+            version: 10
+
+        - uses: actions/setup-node@v4
+          with:
+            node-version: '20'
+            cache: pnpm
+
+        - uses: dtolnay/rust-toolchain@stable
+          with:
+            targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+        - uses: swatinem/rust-cache@v2
+          with:
+            workspaces: ./artifacts/cameracal/src-tauri -> target
+
+        - name: Install dependencies
+          run: pnpm install --frozen-lockfile
+
+        - name: Generate app icons
+          working-directory: artifacts/cameracal
+          run: pnpm exec tauri icon ./public/logo.png
+
+        - name: Build Tauri app
+          uses: tauri-apps/tauri-action@v0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            projectPath: ./artifacts/cameracal
+            tagName: v1.0.0
+            releaseName: Cameracal Card Health v1.0.0
+            releaseDraft: true
+            tauriScript: pnpm exec tauri
+            args: --target universal-apple-darwin
+  
