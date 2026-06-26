@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Cameracal Card Health"
+version = "1.0.0"
+id = "artifacts/cameracal"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20139
+
+[services.development]
+run = "pnpm --filter @workspace/cameracal run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/cameracal", "run", "build" ]
+publicDir = "artifacts/cameracal/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20139"
+BASE_PATH = "/"

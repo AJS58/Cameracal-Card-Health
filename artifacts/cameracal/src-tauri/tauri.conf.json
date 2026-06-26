@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Cameracal Card Health",
+  "version": "1.0.0",
+  "identifier": "com.cameracalservices.cardhealth",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "pnpm tauri:vite",
+    "beforeBuildCommand": "pnpm build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Cameracal Card Health",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 960,
+        "minHeight": 620,
+        "resizable": true,
+        "fullscreen": false,
+        "center": true,
+        "titleBarStyle": "overlay"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Photography",
+    "shortDescription": "Memory card integrity & file health analysis for photographers.",
+    "longDescription": "Cameracal Card Health scans memory cards for corrupt, truncated, or zero-filled files — before and after a shoot. Supports JPEG, RAW (30+ camera brands), PNG, MP4, MOV, MXF and more. Privacy-first: all analysis runs locally, nothing is uploaded.",
+    "copyright": "© 2025 Cameracal Services",
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "entitlements": null,
+      "frameworks": [],
+      "signingIdentity": null,
+      "providerShortName": null,
+      "dmg": {
+        "background": null,
+        "windowSize": { "width": 660, "height": 400 },
+        "appPosition": { "x": 180, "y": 170 },
+        "applicationFolderPosition": { "x": 480, "y": 170 }
+      }
+    },
+    "windows": {
+      "nsis": {
+        "displayLanguageSelector": false,
+        "installMode": "currentUser",
+        "languages": ["English"]
+      }
+    }
+  }
+}

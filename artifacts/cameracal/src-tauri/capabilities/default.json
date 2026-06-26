@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.tauri.app/acl/2/capability",
+  "identifier": "default",
+  "description": "Default capabilities — read-only file system access for card scanning",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "dialog:allow-open",
+    "fs:read-all",
+    "shell:allow-open"
+  ]
+}
